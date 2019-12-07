@@ -7,43 +7,12 @@
     <title>Vue JS Ground Up</title>
 </head>
 <body>
+
     <div id="app">
        <accordion v-for="item in items" :key="item.id" :item="item"></accordion>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-        Vue.component('accordion', {
-            props: ['item'],
-
-            template: `
-               <div>
-                   <p>{{ item.title }}</p>
-                   <p @click="toggle = !toggle">Details</p>
-                   <p v-if="toggle">{{ item.description }}</p>
-               </div>
-            `,
-
-            data: function(){
-                return {
-                    toggle: false,
-                }
-            }
-        });
-
-        new Vue({
-           el: '#app',
-           
-           data: {
-               items: [
-                   { id: 1, title: 'Title 1', description: 'Description for tab 1.'},
-                   { id: 2, title: 'Title 2', description: 'Description for tab 2.'},
-                   { id: 3, title: 'Title 3', description: 'Description for tab 3.'},
-               ]
-           }
-
-        });
-    </script>
+    <script src="/dist/app.js"></script>
 
 </body>
-</html>
+</html> 
