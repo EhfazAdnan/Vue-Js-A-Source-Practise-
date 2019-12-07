@@ -10,6 +10,13 @@
     <div id="app">
         <h1 v-bind:title="menu">{{ title }}</h1>
         <p v-text="content"></p>
+
+        <ul>
+            <li v-for="todo in items">{{ todo }}</li>
+        </ul>
+
+        <input type="text" v-model="item">
+        <button @click="items.push(item)">Add Item</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -18,8 +25,13 @@
            el: '#app',
            data: {
                title: 'Hello World',
+               menu: 'My menu data here',
                content: 'Here is my world object',
-               menu: 'My menu data here'
+               item: '',
+               items:[
+                   'item1',
+                   'item2',
+               ]
            }
         });
     </script>
