@@ -8,33 +8,30 @@
 </head>
 <body>
     <div id="app">
-       <h1 v-if="hidden">Show IF is true</h1>
-       <h1 v-else>Show ELSE is true</h1>
-
-       <ul>
-           <li v-for="item in items">
-               <p v-if="item.checked">{{ item.text }}</p>
-
-               <div v-if="item.checked">Checked!</div> 
-
-               <button @click="item.checked = ! item.checked">Toggle</button>
-           </li>
-           
-       </ul>
+       <!-- <div>Price {{ price }}</div> -->
+       <input type="text" v-model="price">
+       <div>Tax {{ tax }}</div>
+       <div>Total {{ total }}</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         new Vue({
            el: '#app',
+           
            data: {
-             hidden: true,
-             items: [
-                {text: 'item1', checked: true},
-                {text: 'item2', checked: true},
-                {text: 'item3', checked: false},
-             ],
+               price: 200,
+           },
+
+           computed: {
+               tax: function () {
+                   return this.price * 0.1;
+               },
+               total: function () {
+                   return parseInt(this.price) + parseInt(this.tax);
+               }
            }
+
         });
     </script>
 
