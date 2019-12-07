@@ -8,15 +8,19 @@
 </head>
 <body>
     <div id="app">
-        <h1 v-bind:title="menu">{{ title }}</h1>
-        <p v-text="content"></p>
+       <h1 v-if="hidden">Show IF is true</h1>
+       <h1 v-else>Show ELSE is true</h1>
 
-        <ul>
-            <li v-for="todo in items">{{ todo }}</li>
-        </ul>
+       <ul>
+           <li v-for="item in items">
+               <p v-if="item.checked">{{ item.text }}</p>
 
-        <input type="text" v-model="item">
-        <button @click="items.push(item)">Add Item</button>
+               <div v-if="item.checked">Checked!</div> 
+
+               <button @click="item.checked = ! item.checked">Toggle</button>
+           </li>
+           
+       </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -24,14 +28,12 @@
         new Vue({
            el: '#app',
            data: {
-               title: 'Hello World',
-               menu: 'My menu data here',
-               content: 'Here is my world object',
-               item: '',
-               items:[
-                   'item1',
-                   'item2',
-               ]
+             hidden: true,
+             items: [
+                {text: 'item1', checked: true},
+                {text: 'item2', checked: true},
+                {text: 'item3', checked: false},
+             ],
            }
         });
     </script>
